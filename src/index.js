@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import configureStore from './stores/configureStore';
+import * as actions from './actions';
 
 const tracks = [
   {
@@ -10,14 +12,11 @@ const tracks = [
   }
 ];
 
+const store = configureStore();
+store.dispatch(actions.setTracks(tracks));
+
 ReactDOM.render(
-   <div>
-    {
-      tracks.map((track) => {
-        return <div className="track">{track.title}</div>;
-      })
-    }
-  </div>,
+  <Stream />,
   document.getElementById('app')
 );
 
