@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import configureStore from './stores/configureStore';
 import * as actions from './actions';
+import Stream from './components/Stream';
 
 const tracks = [
   {
@@ -16,7 +18,10 @@ const store = configureStore();
 store.dispatch(actions.setTracks(tracks));
 
 ReactDOM.render(
-  <Stream />,
+  // We made the Redux store available to all child components, in this case the Stream component.
+   <Provider store={store}>
+    <Stream />
+  </Provider>,
   document.getElementById('app')
 );
 
